@@ -140,6 +140,8 @@ if ($admin_pass == $login_data['admin_pass']) {
 
 最后，附上我的预期解`exp `:
 
+> PS：由于我上传源码的时候，随手更改了`flag` 导致了一些小变化，下面这个`exp` 就不能直接跑出`flag` 的内容了，大家可以想一想该怎么操作2333
+
 ```python
 """
 	Author:Li4n0
