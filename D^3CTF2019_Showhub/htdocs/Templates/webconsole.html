@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body background="https://s2.ax1x.com/2019/11/16/MBMMm6.jpg" style="background-repeat:no-repeat; background-size:cover; opacity: 0.8;"></body>
+<div class="container" id="console">
+
+</div>
+<script>
+    var main = document.createElement('div');
+    main.setAttribute('style', 'background-image:url("https://s2.ax1x.com/2019/11/16/MBiloq.png"); background-repeat:no-repeat; background-size: 1000px; background-attachment:fixed; background-position:center;width: 1000px;height: 600px;position: absolute;left: 50%;top: 50%;margin-left: -500px;margin-top: -300px;');
+    $('#console')[0].appendChild(main);
+
+    var content = document.createElement('div');
+    content.setAttribute('style', 'width: 960px; margin-top: 30px; overflow: scroll; height: 510px; overflow-x: hidden');
+    main.appendChild(content);
+
+    function addInput(text) {
+        var input = document.createElement('div');
+        input.setAttribute('style', 'top: 5px;height: 20px;width: 100%;color: #FFFFFF;margin-left: 50px;font-size: 12px;');
+        input.innerHTML = text;
+        $.post('/WebConsole/exec', {cmd: text.slice(2)}, result => {
+            addOutput(result["result"]);
+        })
+        content.appendChild(input);
+        content.scrollTop = content.scrollHeight;
+    }
+
+    function addOutput(text) {
+        var output = document.createElement('div');
+        output.setAttribute('style', 'top: 5px;width: 95%;color: #00FF00;margin-left: 50px;font-size: 12px;');
+        output.innerHTML = text.replace(/\n/ig,`<br />`);
+        content.appendChild(output);
+        content.scrollTop = content.scrollHeight;
+    }
+
+    var control = document.createElement('div');
+    main.appendChild(control);
+
+    var s = document.createElement('span');
+    s.setAttribute('style', 'color: white; margin-left: 50px;');
+    s.innerText = '$'
+    control.appendChild(s)
+
+    var textarea = document.createElement("input");
+    textarea.type = "text";
+    textarea.setAttribute('style', 'bottom: 40px; left: 60px; position: absolute; width: 85%; background-color: transparent; color: white; border: 0px;');
+    control.appendChild(textarea);
+
+    addOutput('[ DEBUG CONSOLE ]')
+    addOutput('==================')
+
+    document.onkeydown = function (event) {
+        var e = event || window.event;
+        if (e && e.keyCode == 13) {
+            addInput('$ ' + textarea.value);
+            textarea.value = '';
+        }
+    };
+
+</script>
+{% endblock %}
+
+

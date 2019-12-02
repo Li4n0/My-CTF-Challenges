@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Welcome {{ username }}~</h1>
+        <h3>ShowHub is building, please wait...</h3>
+    </div>
+</div>
+
+<div class="container">
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" alt="64x64" src="/static/clothes.jpg" data-holder-rendered="true" style="width: 64px; height: 64px;">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">Clothes</h4>
+            ShowHub pick the most fashion clothes from all over the world. Our employees will choose the best one for you according to your preference.
+        </div>
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" alt="64x64" src="/static/cosmetics.jpg" data-holder-rendered="true" style="width: 64px; height: 64px;">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">Cosmetics</h4>
+            Sun screen, concealer, shading powder, pressed powder... ShowHub provides the best products to beauty your skin.
+        </div>
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/static/arispods_pro.jpg" data-holder-rendered="true" style="width: 64px; height: 64px;">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">Electronic products</h4>
+            ArisPods Pro, MoeBook Pro, iPhtwo X... ShowHub can get the most fashion electronic products at a very low price. This is because ShowHub cooperates with these company for a long time.
+        </div>
+    </div>
+</div>
+
+{% endblock %}

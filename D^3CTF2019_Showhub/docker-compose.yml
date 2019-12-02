@@ -1,0 +1,37 @@
+version: '2.1'
+services:
+  ATS:
+    image: "annevil/ats-7.1.2:v2"
+    container_name: "d3ctf-ats"
+    volumes:
+      - "./ats-etc:/opt/ts-v2/etc"
+      - "./run/ats.sh:/run.sh"
+    ports:
+      - "80:8080"
+    entrypoint: ["/run.sh"] 
+
+  nginx:
+    image: "nginx:latest"
+    container_name: "d3ctf-nginx"
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
+
+  apache2:
+    image: "d3ctf/php-apache2"
+    build: "./apache2"
+    container_name: "d3ctf-apache2"
+    volumes:
+      - "./htdocs:/var/www/html"
+      - "./run/apache2.sh:/run.sh"
+      - "./flag:/flag"
+    entrypoint: ["/run.sh"]
+
+  database:
+    image: mysql:5
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --sql-mode='' --max-execution-time=1000
+    container_name: "d3ctf-mysql"
+    volumes:
+      - "./htdocs/app.sql:/docker-entrypoint-initdb.d/app.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "8282600e5379907d01452d14ef1fba52"
+      MYSQL_DATABASE: "app"

