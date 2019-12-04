@@ -9,6 +9,8 @@
 ## 如何启动
 
 ```shell
+cd htdocs/
+composer install
 docker-compose up -d
 ```
 
