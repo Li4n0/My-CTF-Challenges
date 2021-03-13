@@ -1,0 +1,22 @@
+bucket102638.oss.cloud.d3ctf.io:80 {
+  rewrite * /bucket102638{path}
+  reverse_proxy * {
+    to http://oss:10000
+  }
+  header {
+    Server "d3cloud-NOS-Server"
+    defer
+  }
+}
+*.oss.cloud.d3ctf.io:80 {
+  header {
+        Server "d3cloud-NOS-Server"
+        Content-Type "application/xml"
+        defer
+  }
+  respond * "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+  <Error><Code>NotFound</Code><Message>BucketNotFound</Message><RequestId>1666E4047E5A0151</RequestId><HostId>a5747bbe-791c-4297-a956-0f0dbebaa56d</HostId></Error>" 404 {
+    	close
+  }
+}
+

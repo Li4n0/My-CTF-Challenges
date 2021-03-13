@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+
+  oss:
+    image: alpine
+    volumes:
+      - $PWD/minio:/minio
+    environment:
+      MINIO_ROOT_USER: d3ctf
+      MINIO_ROOT_PASSWORD: d3ctf@&*P#ssw0rd
+      MINIO_BROWSER: "off"
+    command: /minio server --address=:10000 data
+    healthcheck:
+      test: nc 127.0.0.1 10000
+      retries: 3
+      timeout: 3s
+
+  oss-init:
+    image: alpine
+    volumes:
+      - $PWD/mc:/mc
+      - $PWD/init.sh:/init.sh
+    depends_on:
+      oss:
+        condition: service_healthy
+    command: sh /init.sh

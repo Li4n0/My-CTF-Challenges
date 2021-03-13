@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: flag
+type: Opaque
+data:
+  flag: ZDNjdGZ7ZGVmQHVsdF9zZWN1cml0eV8wZl9jMW91ZF9jb21wb25lbnRzX2lzX2ltcDBydGFudH0=

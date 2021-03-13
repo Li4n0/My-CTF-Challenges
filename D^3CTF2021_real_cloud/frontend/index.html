@@ -1,0 +1,85 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/tabler.min.css">
+    <script src="/static/js/tabler.min.js"></script>
+    <style>
+        footer {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="margin: 0 20% 0 20%;position:absolute;top: 20%;width: 60%;text-align: center">
+    <h1>Upload your file:</h1>
+    <div class="mb-3" style="margin: 5% 0 5% 0">
+        <input id="file" type="file" class="form-control form-control-rounded mb-2" name="file"
+               onchange="checkFile()">
+    </div>
+    <button id="upload" onclick="upload()" class="btn btn-info" disabled>upload</button>
+    <div id="info">
+
+    </div>
+</div>
+<footer>
+    Copyright &copy; 2021 Li4n0@D^3CTF
+</footer>
+<script>
+    function checkFile() {
+        var fileInput = document.getElementById('file')
+        if (!fileInput.value) {
+            info.innerHTML = 'No file chosen';
+            return;
+        }
+        let file = fileInput.files[0];
+        if (file.size > 204800) {
+            document.getElementById("info").innerText = "It's too big!";
+        } else {
+            document.getElementById("info").innerText = "";
+            document.querySelector("#upload").removeAttribute("disabled");
+        }
+    }
+
+    function upload() {
+        var fileInput = document.getElementById('file')
+        if (!fileInput.value) {
+            info.innerHTML = 'No file chosen';
+            return;
+        }
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let data = e.target.result.substring(this.result.indexOf(',') + 1);
+            document.getElementById("info").innerText = "Uploading...";
+            fetch("http://fn10050213.serverless.cloud.d3ctf.io/upload", {
+                method: "POST",
+                headers: {
+                    "Origin": location.href,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "endpoint": "oss.cloud.d3ctf.io",
+                    "key": file.name,
+                    "bucket": "bucket102638",
+                    "file": data
+                })
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("info").innerHTML = `<a href="${data.url}">${data.url}</a>`;
+                    } else {
+                        document.getElementById("info").innerText = "Upload failed!";
+                    }
+                })
+        };
+
+        reader.readAsDataURL(file)
+
+    }
+</script>
+</body>
+</html>

