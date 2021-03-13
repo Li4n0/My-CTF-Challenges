@@ -2,7 +2,12 @@
 
 题目架构如下：
 
-![image-20210311215422732](README.assets/image-20210311215422732.png)
+![image-20210311215422732](.images/image-20210311215422732.png)
+
+## 下载配置文件
+clone仓库或使用[download-directory](https://download-directory.github.io/)单独下载本题目文件夹
+
+**注意：** 如果使用[download-directory](https://download-directory.github.io/)下载的该题目文件夹，则需要手动下载 oss 文件夹内的`minio`和`mc`, `k8s/code`文件夹内的`d3cloud-1.0-SNAPSHOT-jar-with-dependencies.jar` 文件。因为`download-directory` 不支持 `git lfs`
 
 ## 搭建k8s集群
 
